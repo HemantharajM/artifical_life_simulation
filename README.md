@@ -1,4 +1,4 @@
-# artifical_life_simulation
+# artificial_life_simulation
 This repository contains code example of Agent based modeling / Game theory.
 This codes are written in Matlab R2017a. 
 Game theoy - mathematical framework for strategic interactions of individuals.
