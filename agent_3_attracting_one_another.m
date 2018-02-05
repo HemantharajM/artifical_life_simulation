@@ -9,8 +9,8 @@ for i = 1:no_of_agent
     y_rand = randi([-5,15]);
     Agent(i).pos = [x_rand; y_rand];
     Agent(i).attraction = mod(i,3) + 1;
-    Agent(i).velocity = 1;
-    Agent(i).acceleration = 0;
+    Agent(i).velocity = [1;1];
+    Agent(i).acceleration = [0.1;0.1];
 end
 
 %time loop
@@ -19,10 +19,12 @@ while (1)
     time = 0 + dt;
     list_pos = [Agent(1:no_of_agent).pos];
     for i= 1:no_of_agent
-        
+        Agent(i).acceleration = potential_field(Agent(i).pos, Agent(i).attraction,list_pos,katt, krep);
+        Agent(i).pos = movetodirection(Agent(i).pos, [1;1],Agent(i).velocity, Agent(i).acceleration, dt);
+        Agent(i).velocity = Agent(i).acceleration + dt;
         R(i) = rectangle('Position', [(Agent(i).pos' - radius) radius radius], 'Curvature', [1 1], 'Facecolor', 'blue'); 
     end
     
-    getframe();
+    getframe()
     delete(R(1:no_of_agent));
 end
