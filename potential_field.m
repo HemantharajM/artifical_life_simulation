@@ -1,18 +1,19 @@
-function total_force = potential_field(agent_no, goal_no, list_pos,katt, krep)
-    %finding the agent position and goal position
-    goal_pos = list_pos(:,goal_no); 
-    agent_pos = list_pos(:,agent_no);
-    
+function total_force = potential_field(agent_no,list_goal, goal_no, list_pos,katt, krep)
+    %Initialize the force to zero
+    repulsive_force = [0;0];
+    attractive_force = [0;0];
     %find attractive force
-    vec_toward_goal = (goal_pos - agent_pos);
-    unit_vec_toward_goal = (vec_toward_goal)./(sqrt((vec_toward_goal') * (vec_toward_goal)));
-    attractive_force = katt * unit_vec_toward_goal;
-    
+    agent_pos = list_pos(:,agent_no);
+    if goal_no ~= 0
+        goal_pos = list_goal(:,goal_no); 
+        vec_toward_goal = (goal_pos - agent_pos);
+        unit_vec_toward_goal = (vec_toward_goal)./(sqrt((vec_toward_goal') * (vec_toward_goal)));
+        attractive_force = katt * unit_vec_toward_goal;
+    end
     %find repulsive force
     no_of_agent = length(list_pos);
-    repulsive_force = [0;0];
     for i = 1:no_of_agent
-        if i ~= agent_no && i ~= goal_no
+        if i ~= agent_no 
             obstacle_pos = list_pos(:,i);
             vec_opposed_obstacle = (agent_pos - obstacle_pos);
             unit_vec_opposed_obstacle = vec_opposed_obstacle ./ ((vec_opposed_obstacle' * vec_opposed_obstacle).^1.5);
