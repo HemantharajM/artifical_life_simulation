@@ -67,7 +67,7 @@ while (1)
     %agent and follower motion
     for i = 1:no_of_red
             list_pos = [red(1:no_of_red).pos blue(1:no_of_blue).pos wallx_25(1:25).pos wallx1_25(1:25).pos wallx25(1:101).pos wally25(1:101).pos wally_25(1:101).pos];
-            red(i).acceleration = potential_field(i, list_of_red_goal,i,list_pos,5, 5);
+            red(i).acceleration = potential_field_gate(i, list_of_red_goal,i,list_pos,5, 5);
             red(i).pos = movetodirection(red(i).pos, [1;1],red(i).velocity, red(i).acceleration, dt);
             
             red(i).velocity = red(i).acceleration + dt;
@@ -75,7 +75,7 @@ while (1)
     end
     for i = 1:no_of_blue
             list_pos = [red(1:no_of_red).pos blue(1:no_of_blue).pos wallx_25(1:25).pos wallx1_25(1:25).pos wallx25(1:101).pos wally25(1:101).pos wally_25(1:101).pos];
-            blue(i).acceleration = potential_field(i+no_of_red, list_of_blue_goal,i,list_pos,5, 5);
+            blue(i).acceleration = potential_field_gate(i+no_of_red, list_of_blue_goal,i,list_pos,5, 5);
             blue(i).pos = movetodirection(blue(i).pos, [1;1],blue(i).velocity, blue(i).acceleration, dt);
             blue(i).velocity = blue(i).acceleration + dt;
             
