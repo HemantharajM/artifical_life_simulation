@@ -1,4 +1,4 @@
-function total_force = potential_field(agent_no,list_goal, goal_no, list_pos,katt, krep)
+function total_force = potential_field_gate(agent_no,list_goal, goal_no, list_pos,katt, krep)
     %Initialize the force to zero
     repulsive_force = [0;0];
     attractive_force = [0;0];
